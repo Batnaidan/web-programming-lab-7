@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
 const Photo = require('../models/photo');
 
-const getPhotosById = (req, res) => {
+const getPhotosById = async (req, res) => {
   try {
     const incident = await Photo.findById(req.params.photoid);
     res.set('Content-Type', 'image/png');
@@ -11,17 +11,17 @@ const getPhotosById = (req, res) => {
     res.status(404).json({ success: false, error: err });
   }
 };
-const getAllPhotos = (req, res) => {
-  try {
-    const incident = await Photo.findById(req.params.ownerid);
-  } catch (err) {
-    res.status(404).json({ success: false, error: err });
-  }
-};
-const updatePhotoById = (req, res) => {
+// const getAllPhotos = async (req, res) => {
+//   try {
+//     const incident = await Photo.findById(req.params.ownerid);
+//   } catch (err) {
+//     res.status(404).json({ success: false, error: err });
+//   }
+// };
+const updatePhotoById = async (req, res) => {
   //
 };
-const deletePhotoById = (req, res) => {
+const deletePhotoById = async (req, res) => {
   try {
     const incident = await Photo.findById(req.body.id);
     incident.image = undefined;
@@ -44,7 +44,7 @@ const upload = async (req, res) => {
 
 module.exports = {
   getPhotosById,
-  getAllPhotos,
+  // getAllPhotos,
   updatePhotoById,
   deletePhotoById,
   upload,
