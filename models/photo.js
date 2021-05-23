@@ -7,6 +7,10 @@ const PhotoSchema = new Schema({
     required: true,
     default: 1,
   },
+  image: {
+    type: Buffer,
+    required: true,
+  },
   owner_id: {
     type: String,
     required: true,

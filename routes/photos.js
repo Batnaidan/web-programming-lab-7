@@ -4,14 +4,10 @@ const photoController = require('../controllers/photoController');
 
 const multer = require('multer');
 
-const upload = multer({
-  dest: 'images',
-});
-
-router.get('/photo/:userid', photoController.getPhotosById);
-router.get('/photos', photoController.getAllPhotos);
+router.get('/photo/:photoid', photoController.getPhotosById);
+router.get('/photos/:ownerid', photoController.getAllPhotos);
 router.put('/photo/:photoid', photoController.updatePhotoById);
 router.delete('/photo/:photoid', photoController.deletePhotoById);
-router.post('/photo/upload', upload.single('photo'), photoController.upload); //form-data dotor key ni "photo" baih ystoi, value dotor ni photo
+router.post('/photo/upload', upload.single('image'), photoController.upload); //form-data dotor key ni "photo" baih ystoi, value dotor ni photo
 
 module.exports = router;
